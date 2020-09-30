@@ -1,0 +1,9 @@
+
+stubrunner:
+  environment: demo-stubs
+  stubs-mode: local
+  ids: com.example:restkafkaproducer:+
+
+dependencies:
+  restproducer:
+    url: http://localhost:${stubrunner.runningstubs.restkafkaproducer.port}

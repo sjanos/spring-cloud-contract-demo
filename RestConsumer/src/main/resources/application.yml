@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+dependencies:
+  restproducer:
+    url: http://localhost:8081
