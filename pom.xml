@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>KafkaConsumer</module>
         <module>RestKafkaProducer</module>
+        <module>KafkaConsumer</module>
         <module>RestConsumer</module>
     </modules>
 

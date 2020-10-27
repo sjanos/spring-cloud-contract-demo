@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import static java.lang.System.out;
+
 @SpringBootApplication
 
 public class RestConsumerApplication {

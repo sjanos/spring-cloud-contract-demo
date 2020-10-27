@@ -1,3 +1,9 @@
 server:
   port: 8081
-
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          contentType: application/json
+          destination: dummy_channel

@@ -1,0 +1,7 @@
+
+stubrunner:
+  environment: demo-stubs
+  stubs-mode: local
+  ids: com.example:restkafkaproducer:+
+  integration:
+    enabled: false
