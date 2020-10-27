@@ -1,4 +1,4 @@
-package contracts.restkafkaproducer
+package contracts.restkafkaproducer.http
 
 
 import org.springframework.cloud.contract.spec.Contract
@@ -8,7 +8,7 @@ Contract.make {
         method 'POST'
         urlPath('/simpleEndpoint') {
             queryParameters {
-                parameter 'needDifferentResponse': true
+                parameter 'needDifferentResponse': false
             }
         }
 
@@ -23,10 +23,10 @@ Contract.make {
     response {
         status 200
         body(
-                "testString": $(consumer("testStringDifferent"), producer(anyNonBlankString())),
+                "testString": $(consumer("testStringInWrapper"), producer(anyNonBlankString())),
                 "dummyObject": [
-                        "testString" : $(consumer("testStringInDummyDifferent"), producer(anyNonBlankString())),
-                        "testInteger": $(consumer(4321), producer(anyInteger()))
+                        "testString" : $(consumer(fromRequest().body('$.testString')), producer(anyNonBlankString())),
+                        "testInteger": $(consumer(fromRequest().body('$.testInteger')), producer(anyInteger()))
                 ]
         )
         headers {

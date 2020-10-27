@@ -5,12 +5,11 @@ import com.example.kafkaconsumer.model.DummyObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.StubTrigger;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
 
@@ -27,6 +26,9 @@ class KafkaConsumerApplicationTest {
     @Autowired
     private DummyMessageRepository dummyMessageRepository;
 
+    @Autowired
+    ApplicationContext context;
+
     @Test
     public void shouldReceiveMessage() {
 
@@ -34,7 +36,7 @@ class KafkaConsumerApplicationTest {
 
         stubTrigger.trigger("send_dummy_message");
 
-        final DummyObject dummyObject = dummyMessageRepository.getDummyMessage(uuid.toString());
+        final DummyObject dummyObject = dummyMessageRepository.getDummyMessage("testString");
 
         assertThat(dummyObject.getTestInteger()).isEqualTo(1234);
         assertThat(dummyObject.getTestString()).isEqualTo("testString");
